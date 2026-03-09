@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polonês · cronograma A0 → A2 · 44 semanas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background: #f3f5f9;
+            padding: 2rem 1.5rem;
+            color: #1a2639;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 2.5rem;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            overflow: hidden;
+            padding: 2rem 2rem 3rem;
+        }
+        h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #1e3c72, #2b4c8c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.25rem;
+        }
+        .subhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e9ecf3;
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .subhead p {
+            color: #2c3e66;
+            font-weight: 500;
+            background: #eef1f7;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-size: 0.95rem;
+        }
+        .badge-progress {
+            background: #1e3c72;
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 8px rgba(0,20,50,0.2);
+        }
+        .modulo {
+            background: #f8faff;
+            border-radius: 1.8rem;
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 2.2rem;
+            border: 1px solid #dbe1ef;
+            transition: box-shadow 0.2s;
+        }
+        .modulo:hover {
+            box-shadow: 0 10px 25px -10px rgba(20,40,80,0.15);
+        }
+        .modulo-titulo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+        .modulo-titulo h2 {
+            font-size: 1.7rem;
+            font-weight: 650;
+            color: #0f2b50;
+            letter-spacing: -0.01em;
+        }
+        .modulo-titulo span {
+            background: #2b4c8c;
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .semana {
+            background: white;
+            border-radius: 1.4rem;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1.1rem;
+            border: 1px solid #dee5f0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .semana-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .semana-header h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #16345c;
+            min-width: 140px;
+        }
+        .progresso-semana {
+            flex: 1;
+            height: 8px;
+            background: #e0e6f2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .progresso-preenchido {
+            height: 100%;
+            width: 0%;
+            background: #3b6bb0;
+            border-radius: 20px;
+            transition: width 0.2s;
+        }
+        .topicos {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+        .topico-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.2rem 0;
+            border-bottom: 1px dashed #edf2f9;
+        }
+        .topico-item:last-child {
+            border-bottom: none;
+        }
+        .topico-item label {
+            flex: 1;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #1e2f4a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        input[type="checkbox"] {
+            appearance: none;
+            width: 1.3rem;
+            height: 1.3rem;
+            border: 2px solid #8096c0;
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            transition: 0.1s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        input[type="checkbox"]:checked {
+            background: #1e3c72;
+            border-color: #1e3c72;
+            position: relative;
+        }
+        input[type="checkbox"]:checked::after {
+            content: "✓";
+            color: white;
+            font-size: 1rem;
+            font-weight: bold;
+            display: block;
+            line-height: 1;
+            margin-top: -2px;
+        }
+        .topico-checkbox:checked + span {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        .topico-texto {
+            transition: 0.1s;
+        }
+        input[type="checkbox"]:checked ~ .topico-texto {
+            text-decoration: line-through;
+            color: #5f6f8a;
+        }
+        .checklist-final {
+            margin-top: 2.5rem;
+            background: #eef4fe;
+            border-radius: 1.8rem;
+            padding: 1.8rem 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .checklist-final h3 {
+            font-size: 1.4rem;
+            font-weight: 650;
+            color: #102a47;
+        }
+        .modulos-concluidos {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .modulo-status {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            padding: 0.4rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+        }
+        .modulo-status input {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+        .reset-btn {
+            background: none;
+            border: 2px solid #2b4c8c;
+            color: #2b4c8c;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.15s;
+            font-size: 0.95rem;
+        }
+        .reset-btn:hover {
+            background: #2b4c8c;
+            color: white;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            color: #5e7192;
+            font-size: 0.9rem;
+        }
+        .emoji-check {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🇵🇱 polonês · do zero ao A2</h1>
+    <div class="subhead">
+        <p>📅 44 semanas · 4 módulos · checklist inteligente</p>
+        <span class="badge-progress" id="globalProgress">0% concluído</span>
+    </div>
+
+    <!-- módulos com semanas e checkboxes -->
+    <div id="cronogramaApp"></div>
+
+    <!-- rodapé com controle de módulos e reset -->
+    <div class="checklist-final">
+        <h3>✅ meu progresso</h3>
+        <div class="modulos-concluidos" id="modulosChecklist">
+            <!-- gerado via js -->
+        </div>
+        <button class="reset-btn" id="resetAll">⟲ resetar tudo</button>
+    </div>
+    <footer>clique nos itens estudados · tudo fica salvo automaticamente (localStorage)</footer>
+</div>
+
+<script>
+    (function() {
+        // ---------- DADOS ESTRUTURADOS (44 semanas) ----------
+        const modulos = [
+            {
+                nome: "Módulo 1: Fundação e primeiras conversas",
+                nivel: "A1.1",
+                semanas: [
+                    { nome: "Semana 1: O Alfabeto e a Fonética", topicos: ["Alfabeto polonês (32 letras)", "Combinações: cz, sz, rz, ch, dz, dż, dź", "Sons nasalados: ą, ę", "Prática de leitura e pronúncia"] },
+                    { nome: "Semana 2: Primeiras Palavras e Saudações", topicos: ["Saudações formais/informais: dzień dobry, cześć", "Despedidas: do widzenia, pa", "Cortesia: proszę, dziękuję, przepraszam", "Frases: Jak się masz? Co słychać?"] },
+                    { nome: "Semana 3: Quem Sou Eu?", topicos: ["Países e nacionalidades", "Profissões básicas (lekarz, nauczyciel)", "Gênero dos substantivos", "Verbo 'być' (ser/estar) presente"] },
+                    { nome: "Semana 4: Primeiras Frases", topicos: ["Pronomes pessoais (ja, ty, on...)", "Frases com 'być'", "Afirmação e negação", "Prática: 'Jestem Brazylijczykiem'"] },
+                    { nome: "Semana 5: Meus Primeiros Números", topicos: ["Números 0–20", "Dias da semana", "Introdução ao Nominativo (Mianownik)", "Perguntas: Kto to? Co to?"] },
+                    { nome: "Semana 6: O que é isso?", topicos: ["Objetos do dia a dia", "Substantivos no Nominativo singular", "Plural simples – introdução", "Frases: 'To jest książka'"] },
+                    { nome: "Semana 7: Família e Amigos", topicos: ["Membros da família", "Adjetivos básicos (dobry, mały)", "Concordância adjetivo + substantivo", "Descrição simples de pessoas"] },
+                    { nome: "Semana 8: Revisão Módulo 1", topicos: ["Revisão vocabulário", "Diálogos: apresentar-se", "Descrever objetos e pessoas", "Mini-teste informal"] }
+                ]
+            },
+            {
+                nome: "Módulo 2: Explorando o mundo ao redor",
+                nivel: "A1.2",
+                semanas: [
+                    { nome: "Semana 9: O que eu faço?", topicos: ["Verbos comuns (jeść, pić, spać)", "Conjugação presente (-ę, -esz...)", "Verbos regulares", "Frases cotidianas"] },
+                    { nome: "Semana 10: Minha Rotina", topicos: ["Horas (która godzina?)", "Partes do dia", "Refeições (śniadanie)", "Frases sobre rotina"] },
+                    { nome: "Semana 11: Eu gosto de...", topicos: ["Verbos lubić, woleć", "CASO ACUSATIVO (Biernik) – intro", "Acusativo masculino animado/inanimado", "Acusativo feminino/neutro"] },
+                    { nome: "Semana 12: Meus Hobbies", topicos: ["Esportes e lazer", "Prática do Acusativo", "Frases: 'Lubię piłkę'", "Vocabulário: kino, muzyka"] },
+                    { nome: "Semana 13: Onde fica?", topicos: ["Lugares na cidade", "Advérbios de lugar", "Perguntas: Gdzie jest?", "Diálogos localização"] },
+                    { nome: "Semana 14: Vamos ao Mercado?", topicos: ["Comida e bebida", "CASO INSTRUMENTAL (Narzędnik)", "Uso com 'z' (com)", "Interesować się, być (zawód)"] },
+                    { nome: "Semana 15: Em Casa", topicos: ["Cômodos e móveis", "Preposições de lugar (w, na, pod)", "Revisão casos após preposições", "Vocabulário doméstico"] },
+                    { nome: "Semana 16: Localização Estática", topicos: ["CASO PREPOSICIONAL (Miejscownik)", "Uso w/na para localização", "Frases: 'W domu', 'Na stole'", "Formas do locativo"] },
+                    { nome: "Semana 17: Meu e Seu", topicos: ["Pronomes possessivos", "Concordância possessivos", "Revisão casos + possessivos", "Frases de posse"] },
+                    { nome: "Semana 18: Revisão Módulo 2", topicos: ["Rotina diária (diálogo)", "Simulação restaurante", "Descrever casa/cidade", "Hobbies e preferências"] }
+                ]
+            },
+            {
+                nome: "Módulo 3: Contando histórias e planejando",
+                nivel: "A2.1",
+                semanas: [
+                    { nome: "Semana 19: O Passado – Introdução", topicos: ["Tempo passado: variação de gênero", "Verbo 'być' no passado", "Verbos regulares no passado", "Frases no passado"] },
+                    { nome: "Semana 20: Ontem e Anteontem", topicos: ["Marcadores passado (wczoraj)", "Narrativas curtas", "O que fez no fim de semana", "Perguntas: Co robiłeś?"] },
+                    { nome: "Semana 21: O Futuro – Introdução", topicos: ["Verbo 'być' no futuro (będę)", "Futuro composto", "Diferença futuro simples/composto", "Primeiras frases futuro"] },
+                    { nome: "Semana 22: Meus Planos", topicos: ["Marcadores futuro (jutro)", "Falar sobre planos", "'Jutro będę pracować'", "Frases com futuro"] },
+                    { nome: "Semana 23: Genitivo – parte 1", topicos: ["CASO GENITIVO (Dopełniacz)", "Posse (kogo? czego?)", "Genitivo com negação (nie mam)", "Formas básicas"] },
+                    { nome: "Semana 24: Genitivo – parte 2", topicos: ["Genitivo com números 5+", "Preposições: do, dla, bez", "Partes do corpo", "Frases com genitivo"] },
+                    { nome: "Semana 25: O Clima e a Natureza", topicos: ["Estações do ano", "Fenômenos da natureza", "Frases impessoais (jest zimno)", "Perguntas sobre clima"] },
+                    { nome: "Semana 26: A Quem? Para Quem?", topicos: ["CASO DATIVO (Celownik)", "Verbos: dawać, pomagać", "Formas do dativo", "Frases: Daję prezent mamie"] },
+                    { nome: "Semana 27: Viagens e Transportes", topicos: ["Meios de transporte", "Direções (prosto, w lewo)", "Preposições de movimento", "Diálogos: pedir informações"] },
+                    { nome: "Semana 28: Corpo e Saúde", topicos: ["Partes do corpo", "Doenças e sintomas", "'Boli mnie głowa'", "Farmácia/consultas"] },
+                    { nome: "Semana 29: Verbos de Movimento", topicos: ["iść / chodzić (diferença)", "jechać / jeździć", "Movimento determinado x habitual", "Frases com verbos"] },
+                    { nome: "Semana 30: Revisão Módulo 3", topicos: ["História no passado", "Planos futuros", "Falar sobre clima", "Dar instruções"] }
+                ]
+            },
+            {
+                nome: "Módulo 4: Consolidando e avançando",
+                nivel: "A2.2",
+                semanas: [
+                    { nome: "Semana 31: Comparações", topicos: ["Grau comparativo (ładniejszy)", "Comparativo com 'niż'", "Superlativo (najładniejszy)", "Comparar coisas"] },
+                    { nome: "Semana 32: Advérbios", topicos: ["Formação: szybki → szybko", "Advérbios de modo/tempo/lugar", "Comparativo de advérbios", "Frases"] },
+                    { nome: "Semana 33: Números e Datas", topicos: ["Números até 1.000.000", "Meses (styczeń, luty...)", "Falar datas completas", "Perguntar/ dizer ano"] },
+                    { nome: "Semana 34: Vestuário e Compras", topicos: ["Roupas e acessórios", "Vocabulário: cena, rozmiar", "Diálogo compras", "Perguntar preços"] },
+                    { nome: "Semana 35: Revisão Casos I", topicos: ["Nominativo + Acusativo", "Instrumental", "Exercícios integrados", "Contextos"] },
+                    { nome: "Semana 36: Revisão Casos II", topicos: ["Genitivo + Dativo", "Preposicional/Locativo", "Todos os casos juntos", "Exercícios"] },
+                    { nome: "Semana 37: Aspecto Verbal Perfeito", topicos: ["Aspecto imperfeito x perfeito", "Verbos perfeitos no passado", "Ação concluída", "Introdução aos pares"] },
+                    { nome: "Semana 38: Pares de Verbos", topicos: ["robić/zrobić", "czytać/przeczytać", "jeść/zjeść, pisać/napisać", "Quando usar cada"] },
+                    { nome: "Semana 39: Condição", topicos: ["jeśli/jeżeli (se)", "Frases condicionais simples", "Presente + futuro", "Diálogos"] },
+                    { nome: "Semana 40: Ordens e Pedidos", topicos: ["Modo imperativo", "Imperativo formal", "Imperativo informal (ty)", "Forma: zróbmy, chodźmy"] },
+                    { nome: "Semana 41: Meios de Comunicação", topicos: ["Telefone, internet", "Computador, email", "Redes sociais", "Escrever e-mail informal"] },
+                    { nome: "Semana 42: Cultura Polonesa", topicos: ["Feriados (Boże Narodzenie)", "Tradições", "Comidas típicas (pierogi)", "Leitura cultural"] },
+                    { nome: "Semana 43: Dúvidas Comuns", topicos: ["Verbos de movimento (revisão)", "Aspectos verbais", "Números casuais", "Tire dúvidas"] },
+                    { nome: "Semana 44: Revisão Final A2", topicos: ["Revisão geral A2", "Simulação experiências passadas", "Planos futuros", "Situações cotidianas"] }
+                ]
+            }
+        ];
+
+        // ---------- FUNÇÕES DE STORAGE ----------
+        const STORAGE_KEY = 'polonês_progress_44w';
+
+        // carregar ou criar estado
+        let progresso = {};
+
+        function carregarProgresso() {
+            const salvo = localStorage.getItem(STORAGE_KEY);
+            if (salvo) {
+                try { progresso = JSON.parse(salvo); } catch { resetarProgresso(); }
+            } else {
+                resetarProgresso();
+            }
+        }
+
+        function resetarProgresso() {
+            progresso = {};
+            modulos.forEach((mod, idxMod) => {
+                mod.semanas.forEach((sem, idxSem) => {
+                    sem.topicos.forEach((_, idxTop) => {
+                        const key = `${idxMod}-${idxSem}-${idxTop}`;
+                        progresso[key] = false;
+                    });
+                });
+            });
+            salvarProgresso();
+        }
+
+        function salvarProgresso() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(progresso));
+            renderizarTudo(); // atualiza UI
+        }
+
+        // alternar checkbox
+        function toggleItem(modI, semI, topI, checked) {
+            const key = `${modI}-${semI}-${topI}`;
+            progresso[key] = checked;
+            salvarProgresso();
+        }
+
+        // cálculo do progresso global
+        function calcularProgresso() {
+            let total = 0, concluidos = 0;
+            modulos.forEach((mod, idxMod) => {
+                mod.semanas.forEach((sem, idxSem) => {
+                    sem.topicos.forEach((_, idxTop) => {
+                        total++;
+                        if (progresso[`${idxMod}-${idxSem}-${idxTop}`]) concluidos++;
+                    });
+                });
+            });
+            return { total, concluidos, percentual: total ? Math.round((concluidos/total)*100) : 0 };
+        }
+
+        // ---------- RENDER ----------
+        function renderizarTudo() {
+            const app = document.getElementById('cronogramaApp');
+            const globalSpan = document.getElementById('globalProgress');
+            const modulosCheckDiv = document.getElementById('modulosChecklist');
+
+            // construir html
+            let html = '';
+            modulos.forEach((modulo, idxMod) => {
+                html += `<div class="modulo">`;
+                html += `<div class="modulo-titulo"><h2>${modulo.nome}</h2><span>${modulo.nivel}</span></div>`;
+
+                modulo.semanas.forEach((semana, idxSem) => {
+                    // calcula progresso da semana
+                    let totalSem = semana.topicos.length;
+                    let concluidosSem = semana.topicos.filter((_, idxTop) => progresso[`${idxMod}-${idxSem}-${idxTop}`]).length;
+                    let percentSem = totalSem ? (concluidosSem / totalSem) * 100 : 0;
+
+                    html += `<div class="semana">`;
+                    html += `<div class="semana-header">`;
+                    html += `<h3>${semana.nome}</h3>`;
+                    html += `<div class="progresso-semana"><div class="progresso-preenchido" style="width:${percentSem}%;"></div></div>`;
+                    html += `</div><div class="topicos">`;
+
+                    semana.topicos.forEach((topico, idxTop) => {
+                        const key = `${idxMod}-${idxSem}-${idxTop}`;
+                        const isChecked = progresso[key] || false;
+                        html += `<div class="topico-item">`;
+                        html += `<label>`;
+                        html += `<input type="checkbox" data-mod="${idxMod}" data-sem="${idxSem}" data-top="${idxTop}" ${isChecked ? 'checked' : ''}>`;
+                        html += `<span class="topico-texto">${topico}</span>`;
+                        html += `</label>`;
+                        html += `</div>`;
+                    });
+
+                    html += `</div></div>`; // fecha topicos e semana
+                });
+
+                html += `</div>`; // fecha modulo
+            });
+
+            app.innerHTML = html;
+
+            // Atualizar percentual global
+            const { percentual } = calcularProgresso();
+            globalSpan.innerText = `${percentual}% concluído`;
+
+            // Checklist de módulos (macro)
+            let modulosCheckHtml = '';
+            [0,1,2,3].forEach(i => {
+                let totalMod = 0, concluidoMod = 0;
+                modulos[i].semanas.forEach((sem, iSem) => {
+                    sem.topicos.forEach((_, iTop) => {
+                        totalMod++;
+                        if (progresso[`${i}-${iSem}-${iTop}`]) concluidoMod++;
+                    });
+                });
+                const modCompleto = (totalMod === concluidoMod && totalMod > 0);
+                modulosCheckHtml += `<div class="modulo-status"><input type="checkbox" ${modCompleto ? 'checked' : ''} disabled> <span>Mód. ${i+1}</span></div>`;
+            });
+            modulosCheckDiv.innerHTML = modulosCheckHtml;
+
+            // adicionar event listeners aos checkboxes novos
+            document.querySelectorAll('.topico-item input[type=checkbox]').forEach(cb => {
+                cb.addEventListener('change', function(e) {
+                    const mod = parseInt(this.dataset.mod);
+                    const sem = parseInt(this.dataset.sem);
+                    const top = parseInt(this.dataset.top);
+                    toggleItem(mod, sem, top, this.checked);
+                });
+            });
+        }
+
+        // reset
+        document.getElementById('resetAll').addEventListener('click', () => {
+            if (confirm('Tem certeza? Todo o progresso será apagado.')) {
+                resetarProgresso();
+            }
+        });
+
+        // inicialização
+        carregarProgresso();
+        renderizarTudo();
+    })();
+</script>
+</body>
+</html>
